@@ -67,7 +67,6 @@ app.delete("/fruits/:fruitId", async (req, res) => {
 })
 
 // UPDATE ROUTE
-
 app.put("/fruits/:fruitId", async (req, res) => {
   // Handle the 'isReadyToEat' checkbox data
   if (req.body.isReadyToEat === "on") {
@@ -82,7 +81,6 @@ app.put("/fruits/:fruitId", async (req, res) => {
   // Redirect to the fruit's show page to see the updates
   res.redirect(`/fruits/${req.params.fruitId}`)
 })
-
 
 
 
