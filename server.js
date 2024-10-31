@@ -15,26 +15,38 @@ app.use(express.urlencoded({ extended: false }))
 
 
 // GET ROUTES
-// index.ejs
+// Render index.ejs
 app.get("/", async (req, res) => {
     res.render("index.ejs")
+})
+// Render full database
+app.get("/fruits", async (req, res) => {
+  const allFruits = await Fruit.find()
+  // console.log(allFruits) //log the fruits!
+  res.render("fruits/index.ejs", { fruits: allFruits })
 })
 // fruits/new.ejs 
 app.get("/fruits/new", (req, res) => {
   res.render("fruits/new.ejs")
 })
+// ANY ID ROUTE NEEDS TO BE PLACED AFTER NEW ROUTES
+// SHOW a specific fruit
+app.get("/fruits/:fruitId", async (req, res) => {
+  const foundFruit = await Fruit.findById(req.params.fruitId)
+  res.render("fruits/show.ejs", { fruit: foundFruit })
+})
 
 // POST ROUTES
 // new fruit
 app.post("/fruits", async (req, res) => {
-  console.log(req.body)
+  // console.log(req.body)
   if (req.body.isReadyToEat === "on") {
     req.body.isReadyToEat = true
   } else {
     req.body.isReadyToEat = false
   }
   await Fruit.create(req.body)
-  res.redirect("/fruits/new")
+  res.redirect("/fruits")
 })
 
 
