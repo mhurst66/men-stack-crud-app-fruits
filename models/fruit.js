@@ -1,7 +1,5 @@
+// REQUIRE MONGOOSE TO CREATE SCHEMA
 const mongoose = require('mongoose')
-
-
-
 
 // 1. first define the shape of the object we want to store in our database
 // this is a SCHEMA
