@@ -9,6 +9,7 @@ const app = express() // creates the express app and allows us to use .use, etc.
 const PORT = process.env.PORT ? process.env.PORT : '3000'
 const methodOverride = require("method-override")
 const morgan = require("morgan")
+const path = require("path")
 
 // Models
 const Fruit = require('./models/fruit')
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: false }))
 // middleware used to delete
 app.use(methodOverride("_method"))
 app.use(morgan("dev"))
+app.use(express.static(path.join(__dirname, "public")))
 
 
 // GET ROUTES
